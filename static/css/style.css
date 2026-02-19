@@ -1,0 +1,51 @@
+body {
+    background: #f4f6f9;
+    margin: 0;
+}
+
+/* SIDEBAR FIXED */
+.sidebar {
+    width: 220px;
+    height: 100vh;
+    background: #1f3b64;
+    color: white;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.sidebar a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    padding: 12px 20px;
+}
+
+.sidebar a:hover {
+    background: #2c5282;
+}
+
+/* MAIN CONTENT SHIFT */
+.main-content {
+    margin-left: 220px;
+    /* SAME as sidebar width */
+    width: calc(100% - 220px);
+}
+
+/* CARD STYLE */
+.card-box {
+    border-radius: 14px;
+    border: none;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+/* TABLE SCROLL FIX */
+.table-scroll {
+    overflow-x: auto;
+}
+
+/* SMALL FIX */
+.table td,
+.table th {
+    vertical-align: middle;
+}
