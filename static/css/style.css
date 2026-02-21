@@ -49,3 +49,29 @@ body {
 .table th {
     vertical-align: middle;
 }
+
+/* MOBILE TOPBAR */
+.mobile-topbar {
+    background: #1f3b64;
+    padding: 10px 15px;
+}
+
+/* MOBILE RESPONSIVE */
+@media (max-width: 768px) {
+
+    .sidebar {
+        position: fixed;
+        left: -220px;
+        transition: 0.3s;
+        z-index: 1000;
+    }
+
+    .sidebar.show {
+        left: 0;
+    }
+
+    .main-content {
+        margin-left: 0 !important;
+        width: 100% !important;
+    }
+}
