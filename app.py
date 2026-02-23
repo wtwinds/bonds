@@ -3,6 +3,7 @@ from pymongo import MongoClient
 from datetime import datetime
 import requests
 import config
+import time
 
 app = Flask(__name__)
 app.secret_key = config.SECRET_KEY
@@ -88,13 +89,25 @@ def buy_bond(company):
             json={
                 "username": user,
                 "amount": amount,
-                "merchant": "Bonds"  # MONEY GOES TO BONDS WALLET
+                "merchant": "Bonds"
             },
-            timeout=10,
+            timeout=40,
         ).json()
     except:
-        flash("Bank server error", "danger")
-        return redirect("/bonds")
+        time.sleep(5)  # retry once (Render wakeup)
+        try:
+            res = requests.post(
+                "https://bank-stock-web.onrender.com/bank/api/pay",
+                json={
+                    "username": user,
+                    "amount": amount,
+                    "merchant": "Bonds"
+                },
+                timeout=40,
+            ).json()
+        except:
+            flash("Bank server waking up, try again", "danger")
+            return redirect("/bonds")
 
     if res.get("status") != "success":
         flash(res.get("msg", "Payment failed"), "danger")
