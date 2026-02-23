@@ -100,7 +100,9 @@
                         <td>{{ b['Min Invest'] }}</td>
 
                         <td>
-                            <button class="btn btn-primary btn-sm">Buy</button>
+                            <a href="/buy/{{ b['Category'] }}" class="btn btn-primary btn-sm">
+                                Buy
+                            </a>
                         </td>
                     </tr>
                     {% endfor %}

@@ -19,7 +19,15 @@
 
     <!-- SIDEBAR -->
     <div class="sidebar" id="sidebar">
-        <h4 class="p-3 text-white"><b>BondsHub</b></h4>
+        <div class="p-3 text-white">
+            <h4 class="mb-0"><b>BondsHub</b></h4>
+
+            {% if session.get('user') %}
+            <small class="text-light">
+                Welcome, {{ session.get('user') }}
+            </small>
+            {% endif %}
+        </div>
         <a href="/bonds">Bonds</a>
         <a href="/portfolio">Portfolio</a>
         <a href="/logout">Logout</a>
@@ -27,6 +35,17 @@
 
     <!-- MAIN CONTENT -->
     <div class="main-content p-4">
+
+        <!-- FLASH ALERTS -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% for category, msg in messages %}
+        <div class="alert alert-{{category}} alert-dismissible fade show">
+            {{msg}}
+            <button class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+        {% endfor %}
+        {% endwith %}
+
         {% block content %}{% endblock %}
     </div>
 
